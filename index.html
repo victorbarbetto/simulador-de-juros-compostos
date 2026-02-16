@@ -6,20 +6,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulador de Juros Compostos</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="popups.css">
     <script src="https://kit.fontawesome.com/0d21ea7bef.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
 
     <header>
-        <i class="fa-solid fa-sun"></i>
+        <div>
+            <i class="fa-solid fa-sun toggleTheme"></i>
+        </div>
     </header>
 
     <main>
-        <section>
+        <section class="hero">
+            <h1>Pequenas decisões. Grandes resultados.</h1>
+            <p>Descubra quanto você pode acumular ao transformar pequenos gastos em investimentos.</p>
+            <button class="btn-hero">Simular agora</button>
+        </section>
 
+        <section class="simulacao">
+            <h2>Escolha uma pequena economia que você poderia fazer</h2>
+            <p>Não precisa mudar sua vida inteira. Apenas uma decisão já faz diferença.</p>
+            <div class="lista-economias">
+
+                <div class="economia card cafe">
+                    <i class="fa-solid fa-mug-hot"></i>
+                    <h3>Café diário fora de casa</h3>
+                    <p>Economizar R$12 por dia</p>
+                </div>
+
+                <div class="economia card delivery">
+                    <i class="fa-solid fa-burger"></i>
+                    <h3>Delivery 2x por semana</h3>
+                    <p>Economizar R$200 por mês</p>
+                </div>
+
+                <div class="economia card assinatura">
+                    <i class="fa-solid fa-circle-play"></i>
+                    <h3>Assinaturas que você quase não usa</h3>
+                    <p>Economizar R$80 por mês</p>
+                </div>
+
+                <div class="economia card uber">
+                    <i class="fa-solid fa-car"></i>
+                    <h3>Uber em trajetos curtos</h3>
+                    <p>Economizar R$150 por mês</p>
+                </div>
+
+                <div class="card personalizado">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <h3>Economia personalizada</h3>
+                    <p>Digite um valor personalizado</p>
+                </div>
+
+            </div>
+            <button class="btn-simulacao">Ver resultado</button>
         </section>
     </main>
+
+    <div class="popup criar-card">
+        <div class="content">
+            <i class="fa-solid fa-xmark fechar-criar-card"></i>
+            <input type="text" name="nome-card" id="nome-card" placeholder="Nome da Economia">
+            <input type="text" name="valor-card" id="valor-card" placeholder="Valor da Economia">
+            <button class="btn-criar-card">Criar Economia</button>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
