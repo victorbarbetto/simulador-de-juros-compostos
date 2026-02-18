@@ -30,25 +30,25 @@
             <p>Não precisa mudar sua vida inteira. Apenas uma decisão já faz diferença.</p>
             <div class="lista-economias">
 
-                <div class="economia card cafe">
+                <div data-value="252" class="economia card cafe">
                     <i class="fa-solid fa-mug-hot"></i>
                     <h3>Café diário fora de casa</h3>
                     <p>Economizar R$12 por dia</p>
                 </div>
 
-                <div class="economia card delivery">
+                <div data-value="200" class="economia card delivery">
                     <i class="fa-solid fa-burger"></i>
                     <h3>Delivery 2x por semana</h3>
                     <p>Economizar R$200 por mês</p>
                 </div>
 
-                <div class="economia card assinatura">
+                <div data-value="80" class="economia card assinatura">
                     <i class="fa-solid fa-circle-play"></i>
                     <h3>Assinaturas que você quase não usa</h3>
                     <p>Economizar R$80 por mês</p>
                 </div>
 
-                <div class="economia card uber">
+                <div data-value="150" class="economia card uber">
                     <i class="fa-solid fa-car"></i>
                     <h3>Uber em trajetos curtos</h3>
                     <p>Economizar R$150 por mês</p>
@@ -63,12 +63,27 @@
             </div>
             <button class="btn-simulacao">Ver resultado</button>
         </section>
+
+        <section class="resultado">
+            <div class="selic-data">
+                <p class="data-selic">Atualização:</p>
+                <p class="selic-atual">Selic:</p>
+            </div>
+
+            <div class="grafico">
+                <h3 class="economia-mensal"></h3>
+                <canvas id="graficoBarra">
+
+                </canvas>
+            </div>
+        </section>
     </main>
 
     <div class="popup criar-card">
         <div class="content">
             <i class="fa-solid fa-xmark fechar-criar-card"></i>
-            <input type="text" name="nome-card" id="nome-card" placeholder="Nome da Economia" minlength="3" maxlength="30">
+            <input type="text" name="nome-card" id="nome-card" placeholder="Nome da Economia" minlength="3"
+                maxlength="30">
             <input type="text" name="valor-card" id="valor-card" placeholder="Valor da Economia">
             <select name="frequencia" id="frequencia">
                 <option value="diaria">Diária</option>
@@ -78,6 +93,7 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script type="module" src="js/script.js"></script>
 </body>
 

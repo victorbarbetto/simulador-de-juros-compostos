@@ -95,11 +95,13 @@ btnCriarCard.addEventListener('click', (e) => {
     // Se for diario, o valor do card é economia por dia e o total mês é multiplicado por 30
     if (inputFrequenciaCard.value === 'diaria') {
         novoPCard.textContent = `Economizar R$${inputValorCard.value} por dia`;
-        totalEconomiaMes = inputValorCard.value * 30;
+        totalEconomiaMes = inputValorCard.value * 21;
     } else if (inputFrequenciaCard.value === 'mensal') {
         novoPCard.textContent = `Economizar R$${inputValorCard.value} por mês`;
         totalEconomiaMes = inputValorCard.value;
     }
+
+    novaDivCard.dataset.value = totalEconomiaMes;
 
     novaDivCard.appendChild(novoPCard);
 
@@ -119,3 +121,47 @@ btnCriarCard.addEventListener('click', (e) => {
 })
 
 // Mostrando resultado da simulação
+const btnVerSimulacao = document.querySelector('.btn-simulacao');
+
+const sectionResultado = document.querySelector('section.resultado');
+const pDataSelic = document.querySelector('p.data-selic');
+const pValorSelic = document.querySelector('p.selic-atual');
+const h3EconomiaMensal = document.querySelector('h3.economia-mensal');
+
+btnVerSimulacao.addEventListener('click', async (e) => {
+    e.preventDefault();
+
+    sectionSimulacao.style.display = 'none';
+    sectionResultado.style.display = 'flex';
+
+    const divsAtivas = document.querySelectorAll('div.ativo');
+    let soma = 0;
+
+    divsAtivas.forEach(div => {
+        soma += Number(div.dataset.value);
+    })
+
+    console.log(soma);
+
+    try {
+
+        // Buscar selic atual e transformar em anual
+        const selic = await buscarSelic();
+        const selicAnual = (Math.pow(1 + (selic.valor / 100), 252) - 1) * 100;
+
+        // Exibir data e taxa atual da selic
+        pDataSelic.textContent = `Atualização: ${selic.data}`;
+        pValorSelic.textContent = `Selic: ${selicAnual.toFixed(2)}% a.a`;
+
+        // Formatar economia mensal e exibir como H3
+        const somaEmReal = new Intl.NumberFormat('pt-br', {
+            style: 'currency',
+            currency: 'BRL'
+        });
+        h3EconomiaMensal.textContent = `Economia mensal: ${somaEmReal.format(soma)}`;
+
+    } catch (erro) {
+        pDataSelic.textContent = "Erro ao buscar a Selic.";
+        console.error(erro);
+    }
+})

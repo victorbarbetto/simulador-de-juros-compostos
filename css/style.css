@@ -71,6 +71,7 @@ main section button:hover {
 
 main section.hero {
     text-align: center;
+    display: flex; /* apagar */
 }
 
 main section.hero p {
@@ -78,7 +79,7 @@ main section.hero p {
 }
 
 
-/*--------------------------------*/
+/* SECTION LISTA DE ECONOMIAS */
 
 section.simulacao {
     display: none;
@@ -126,22 +127,6 @@ div.card p {
     font-size: 0.9rem;
 }
 
-/* div.cafe {
-    grid-area: 1/2/2/3;
-}
-
-div.delivery {
-    grid-area: 1/3/2/4;
-}
-
-div.assinatura {
-    grid-area: 1/4/2/5;
-}
-
-div.uber {
-    grid-area: 2/2/2/3;
-} */
-
 div.personalizado {
     order: 1;
     opacity: 0.5;
@@ -154,4 +139,17 @@ div.personalizado:hover {
 div.lista-economias div.ativo {
     background-color: var(--card-ativo);
     border: solid 1px var(--valor-positivo);
+}
+
+/* SECTION RESULTADO */
+
+section.resultado {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+}
+
+section.resultado p {
+    width: 100%;
+    font-size: 0.8rem;
 }
