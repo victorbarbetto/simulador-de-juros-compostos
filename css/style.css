@@ -1,32 +1,9 @@
+@import url(variaveis.css);
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-:root {
-    /*BASE*/
-    --fundo-principal: #0F172A;
-    --fundo-secundario: #1E293B;
-    --card: #1B263B;
-    --texto-principal: #F1F5F9;
-    --texto-secundario: #94A3B8;
-
-    /*DESTAQUES*/
-    --botao: #22C55E;
-    --botao-hover: #16A34A;
-    --valor-positivo: #4ADE80;
-    --alerta: #FACC15;
-    --destaque: #3B82F6;
-    --card-ativo: #25d32549;
-}
-
-.white-mode {
-    --fundo-principal: #FFFFFF;
-    --fundo-secundario: #F8FAFC;
-    --card: #E2E8F0;
-    --texto-principal: #0F172A;
-    --texto-secundario: #475569;
 }
 
 body {
@@ -113,12 +90,15 @@ section.simulacao {
 
 div.lista-economias {
     display: grid;
-    grid-template-columns: 15px 1fr 1fr 1fr 15px;
-    grid-template-rows: 120px 120px;
+    grid-template-columns: repeat(3, 1fr);
     gap: 15px;
+    padding: 0 15px;
 }
 
 div.lista-economias div.card {
+    height: 120px;
+    width: 220px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -130,6 +110,8 @@ div.lista-economias div.card {
     text-align: center;
     border: solid 1px var(--texto-secundario);
     cursor: pointer;
+
+    transition: opacity 0.5s ease;
 }
 
 div.card:hover {
@@ -144,7 +126,7 @@ div.card p {
     font-size: 0.9rem;
 }
 
-div.cafe {
+/* div.cafe {
     grid-area: 1/2/2/3;
 }
 
@@ -158,10 +140,10 @@ div.assinatura {
 
 div.uber {
     grid-area: 2/2/2/3;
-}
+} */
 
 div.personalizado {
-    grid-area: 2/3/3/4;
+    order: 1;
     opacity: 0.5;
 }
 

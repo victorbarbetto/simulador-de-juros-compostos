@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulador de Juros Compostos</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="popups.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/popups.css">
     <script src="https://kit.fontawesome.com/0d21ea7bef.js" crossorigin="anonymous"></script>
 </head>
 
@@ -68,13 +68,17 @@
     <div class="popup criar-card">
         <div class="content">
             <i class="fa-solid fa-xmark fechar-criar-card"></i>
-            <input type="text" name="nome-card" id="nome-card" placeholder="Nome da Economia">
+            <input type="text" name="nome-card" id="nome-card" placeholder="Nome da Economia" minlength="3" maxlength="30">
             <input type="text" name="valor-card" id="valor-card" placeholder="Valor da Economia">
+            <select name="frequencia" id="frequencia">
+                <option value="diaria">Diária</option>
+                <option value="mensal">Mensal</option>
+            </select>
             <button class="btn-criar-card">Criar Economia</button>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script type="module" src="js/script.js"></script>
 </body>
 
 </html>
