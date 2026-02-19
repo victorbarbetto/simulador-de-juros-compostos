@@ -141,13 +141,12 @@ btnVerSimulacao.addEventListener('click', async (e) => {
         soma += Number(div.dataset.value);
     })
 
-    console.log(soma);
-
     try {
 
         // Buscar selic atual e transformar em anual
         const selic = await buscarSelic();
         const selicAnual = (Math.pow(1 + (selic.valor / 100), 252) - 1) * 100;
+        const selicMensal = Math.pow(1 + selicAnual / 100, 1 / 12) - 1;
 
         // Exibir data e taxa atual da selic
         pDataSelic.textContent = `Atualização: ${selic.data}`;
@@ -160,8 +159,74 @@ btnVerSimulacao.addEventListener('click', async (e) => {
         });
         h3EconomiaMensal.textContent = `Economia mensal: ${somaEmReal.format(soma)}`;
 
+        const projecao1 = calcularProjecao(soma, selicMensal, 1);
+        const projecao2 = calcularProjecao(soma, selicMensal, 2);
+        const projecao3 = calcularProjecao(soma, selicMensal, 3);
+        const projecao4 = calcularProjecao(soma, selicMensal, 4);
+        const projecao5 = calcularProjecao(soma, selicMensal, 5);
+
+        const ctx = document.querySelector('#grafico-barra');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Ano 1', 'Ano 2', 'Ano 3', 'Ano 4', 'Ano 5'],
+                datasets: [
+                    {
+                        label: 'Total investido',
+                        data: [
+                            projecao1.totalInvestido,
+                            projecao2.totalInvestido,
+                            projecao3.totalInvestido,
+                            projecao4.totalInvestido,
+                            projecao5.totalInvestido
+                        ],
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Juros',
+                        data: [
+                            projecao1.juros,
+                            projecao2.juros,
+                            projecao3.juros,
+                            projecao4.juros,
+                            projecao5.juros
+                        ],
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
     } catch (erro) {
         pDataSelic.textContent = "Erro ao buscar a Selic.";
         console.error(erro);
     }
 })
+
+function calcularProjecao(aporteMensal, selicMensal, anos) {
+    const meses = anos * 12;
+
+    let montante = 0;
+    let totalInvestido = 0;
+
+    for (let i = 1; i <= meses; i++) {
+        totalInvestido += aporteMensal;
+        montante = (montante + aporteMensal) * (1 + selicMensal);
+    }
+
+    const juros = montante - totalInvestido;
+
+    return {
+        montante,
+        totalInvestido,
+        juros
+    };
+}
