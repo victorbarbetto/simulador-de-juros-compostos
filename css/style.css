@@ -130,6 +130,8 @@ div.card p {
 div.personalizado {
     order: 1;
     opacity: 0.5;
+
+    transition: opacity 0.5s ease;
 }
 
 div.personalizado:hover {
