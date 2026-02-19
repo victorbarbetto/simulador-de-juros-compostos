@@ -147,6 +147,13 @@ section.resultado {
     display: none;
     flex-direction: column;
     width: 100%;
+    gap: 50px;
+}
+
+.resultado .grafico {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 section.resultado p {

@@ -153,17 +153,17 @@ btnVerSimulacao.addEventListener('click', async (e) => {
         pValorSelic.textContent = `Selic: ${selicAnual.toFixed(2)}% a.a`;
 
         // Formatar economia mensal e exibir como H3
-        const somaEmReal = new Intl.NumberFormat('pt-br', {
+        const formatReal = new Intl.NumberFormat('pt-br', {
             style: 'currency',
             currency: 'BRL'
         });
-        h3EconomiaMensal.textContent = `Economia mensal: ${somaEmReal.format(soma)}`;
+        h3EconomiaMensal.textContent = `Economia mensal: ${formatReal.format(soma)}`;
 
-        const projecao1 = calcularProjecao(soma, selicMensal, 1);
-        const projecao2 = calcularProjecao(soma, selicMensal, 2);
-        const projecao3 = calcularProjecao(soma, selicMensal, 3);
-        const projecao4 = calcularProjecao(soma, selicMensal, 4);
-        const projecao5 = calcularProjecao(soma, selicMensal, 5);
+        const projecoes = [];
+
+        for (let i = 1; i <= 5; i++) {
+            projecoes.push(calcularProjecao(soma, selicMensal, i));
+        }
 
         const ctx = document.querySelector('#grafico-barra');
 
@@ -175,35 +175,46 @@ btnVerSimulacao.addEventListener('click', async (e) => {
                     {
                         label: 'Total investido',
                         data: [
-                            projecao1.totalInvestido,
-                            projecao2.totalInvestido,
-                            projecao3.totalInvestido,
-                            projecao4.totalInvestido,
-                            projecao5.totalInvestido
+                            projecoes[0].totalInvestido.toFixed(2),
+                            projecoes[1].totalInvestido.toFixed(2),
+                            projecoes[2].totalInvestido.toFixed(2),
+                            projecoes[3].totalInvestido.toFixed(2),
+                            projecoes[4].totalInvestido.toFixed(2)
                         ],
-                        borderWidth: 1
+                        backgroundColor: '#25d32549'
                     },
                     {
                         label: 'Juros',
                         data: [
-                            projecao1.juros,
-                            projecao2.juros,
-                            projecao3.juros,
-                            projecao4.juros,
-                            projecao5.juros
+                            projecoes[0].juros.toFixed(2),
+                            projecoes[1].juros.toFixed(2),
+                            projecoes[2].juros.toFixed(2),
+                            projecoes[3].juros.toFixed(2),
+                            projecoes[4].juros.toFixed(2)
                         ],
-                        borderWidth: 1
+                        backgroundColor: '#4ADE80'
                     }
                 ]
             },
             options: {
                 scales: {
+                    x: {
+                        stacked: true
+                    },
                     y: {
-                        beginAtZero: true
+                        stacked: true
                     }
                 }
             }
         });
+
+        const divGrafico = document.querySelector('div.grafico');
+
+        for (let i = 0; i < projecoes.length; i++) {
+            const novoP = document.createElement('p');
+            novoP.textContent = `Total Ano ${i + 1}: ${formatReal.format(projecoes[i].montante)}.`;
+            divGrafico.appendChild(novoP);
+        }
 
     } catch (erro) {
         pDataSelic.textContent = "Erro ao buscar a Selic.";
@@ -230,3 +241,13 @@ function calcularProjecao(aporteMensal, selicMensal, anos) {
         juros
     };
 }
+
+// VOLTAR PARA SIMULAÇÃO
+
+const btnVoltarSimulacao = document.querySelector('.btn-outra-simulacao');
+
+btnVoltarSimulacao.addEventListener('click', () => {
+
+    sectionResultado.style.display = 'none';
+    sectionSimulacao.style.display = 'flex';
+})
