@@ -163,6 +163,8 @@ div.uber {
 div.personalizado {
     grid-area: 2/3/3/4;
     opacity: 0.5;
+
+    transition: opacity 0.5s ease;
 }
 
 div.personalizado:hover {
