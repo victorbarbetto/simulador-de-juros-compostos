@@ -1,100 +1,99 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" data-bs-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador de Juros Compostos</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/popups.css">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/0d21ea7bef.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <header>
-        <div>
-            <i class="fa-solid fa-sun toggleTheme"></i>
+    <!-- SECTION HERO -->
+
+    <section id="screen-hero"
+        class="vh-100 d-flex flex-column align-items-center justify-content-center p-5 text-center">
+        <h1 class="fw-bold">Quanto suas pequenas economias podem virar em 5 anos?</h1>
+        <p>Descubra quanto R$5 por dia podem se transformar investindo com a taxa Selic atual.</p>
+        <button type="button" id="btnHero" class="btn btn-success">Simular agora</button>
+    </section>
+
+    <!-- SECTION ECONOMIAS -->
+
+    <section id="screen-economias"
+        class="d-none flex-column align-items-center justify-content-center p-5 text-center vh-100">
+
+        <h2>Selecione suas economias:</h2>
+
+        <!-- CARDS -->
+        <div class="cards container">
+
+            <!-- LINHA 1 -->
+            <div class="row">
+                <div class="card col m-2" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Café fora de casa</h5>
+                        <p class="card-text">Economize R$12 por dia.</p>
+                    </div>
+                </div>
+
+                <div class="card col m-2" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Delivery 1x por semana</h5>
+                        <p class="card-text">Economize R$200 por mês.</p>
+                    </div>
+                </div>
+
+                <div class="card col m-2" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Streaming sem uso</h5>
+                        <p class="card-text">Economize R$49 por mês.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LINHA 2 -->
+            <div class="row">
+                <div class="card col m-2" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Doce depois do almoço</h5>
+                        <p class="card-text">Economize R$7 por dia.</p>
+                    </div>
+                </div>
+
+                <div class="card col m-2" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Uber invés de ônibus</h5>
+                        <p class="card-text">Economize R$70 por mês.</p>
+                    </div>
+                </div>
+
+                <div class="card col m-2 opacity-50" id="card-criar-economia" style="width: 18rem;">
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
+                        <h5 class="card-title">Criar economia</h5>
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </div>
+                </div>
+            </div>
         </div>
-    </header>
 
-    <main>
-        <section class="hero">
-            <h1>Pequenas decisões. Grandes resultados.</h1>
-            <p>Descubra quanto você pode acumular ao transformar pequenos gastos em investimentos.</p>
-            <button class="btn-hero">Simular agora</button>
-        </section>
+        <button type="button" id="btnEconomias" class="btn btn-success mt-3">Ver resultado</button>
+    </section>
 
-        <section class="simulacao">
-            <h2>Escolha uma pequena economia que você poderia fazer</h2>
-            <p>Não precisa mudar sua vida inteira. Apenas uma decisão já faz diferença.</p>
-            <div class="lista-economias">
+    <section id="screen-resultado" class="d-none"></section>
 
-                <div data-value="252" class="economia card cafe">
-                    <i class="fa-solid fa-mug-hot"></i>
-                    <h3>Café diário fora de casa</h3>
-                    <p>Economizar R$12 por dia</p>
-                </div>
 
-                <div data-value="200" class="economia card delivery">
-                    <i class="fa-solid fa-burger"></i>
-                    <h3>Delivery 2x por semana</h3>
-                    <p>Economizar R$200 por mês</p>
-                </div>
-
-                <div data-value="80" class="economia card assinatura">
-                    <i class="fa-solid fa-circle-play"></i>
-                    <h3>Assinaturas que você quase não usa</h3>
-                    <p>Economizar R$80 por mês</p>
-                </div>
-
-                <div data-value="150" class="economia card uber">
-                    <i class="fa-solid fa-car"></i>
-                    <h3>Uber em trajetos curtos</h3>
-                    <p>Economizar R$150 por mês</p>
-                </div>
-
-                <div class="card personalizado">
-                    <i class="fa-solid fa-pen-to-square"></i>
-                    <h3>Economia personalizada</h3>
-                    <p>Digite um valor personalizado</p>
-                </div>
-
-            </div>
-            <button class="btn-simulacao">Ver resultado</button>
-        </section>
-
-        <section class="resultado">
-            <div class="selic-data">
-                <p class="data-selic">Atualização:</p>
-                <p class="selic-atual">Selic:</p>
-            </div>
-
-            <div class="grafico">
-                <h3 class="economia-mensal"></h3>
-
-                <canvas id="grafico-barra"></canvas>
-            </div>
-            <button class="btn-outra-simulacao">Outra Simulação</button>
-        </section>
-    </main>
-
-    <div class="popup criar-card">
-        <div class="content">
-            <i class="fa-solid fa-xmark fechar-criar-card"></i>
-            <input type="text" name="nome-card" id="nome-card" placeholder="Nome da Economia" minlength="3"
-                maxlength="30">
-            <input type="text" name="valor-card" id="valor-card" placeholder="Valor da Economia">
-            <select name="frequencia" id="frequencia">
-                <option value="diaria">Diária</option>
-                <option value="mensal">Mensal</option>
-            </select>
-            <button class="btn-criar-card">Criar Economia</button>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script type="module" src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
+        integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
+        crossorigin="anonymous"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
