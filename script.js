@@ -178,7 +178,6 @@ function calcular(aporteMensal, taxaAnual, dataAtualizacao) {
     textoEconomiaMensal.textContent = `Economia mensal: ${aporteMensal.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}.`;
 
 
-
     // IR PARA TELA RESULTADO
 
     sectionEconomias.classList.remove('d-flex');
