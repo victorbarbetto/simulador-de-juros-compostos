@@ -27,57 +27,68 @@
     <section id="screen-economias"
         class="d-none flex-column align-items-center justify-content-center p-5 text-center vh-100">
 
-        <h2>Selecione suas economias:</h2>
+        <h2 class="mb-4">Selecione suas economias:</h2>
 
         <!-- CARDS -->
         <div class="cards container">
 
             <!-- LINHA 1 -->
             <div class="row">
-                <div class="card col m-2" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Café fora de casa</h5>
-                        <p class="card-text">Economize R$12 por dia.</p>
+                <div class="col-12 col-sm-6 col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <h5 class="card-title">Café fora de casa</h5>
+                            <p class="card-text">Economize R$12 por dia.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="card col m-2" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Delivery 1x por semana</h5>
-                        <p class="card-text">Economize R$200 por mês.</p>
+                <div class="col-12 col-sm-6 col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <h5 class="card-title">Delivery 1x por semana</h5>
+                            <p class="card-text">Economize R$200 por mês.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="card col m-2" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Streaming sem uso</h5>
-                        <p class="card-text">Economize R$49 por mês.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- LINHA 2 -->
-            <div class="row">
-                <div class="card col m-2" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Doce depois do almoço</h5>
-                        <p class="card-text">Economize R$7 por dia.</p>
+                <div class="col-12 col-sm-6 col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <h5 class="card-title">Streaming sem uso</h5>
+                            <p class="card-text">Economize R$49 por mês.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="card col m-2" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Uber invés de ônibus</h5>
-                        <p class="card-text">Economize R$70 por mês.</p>
+                <div class="col-12 col-sm-6 col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <h5 class="card-title">Doce depois do almoço</h5>
+                            <p class="card-text">Economize R$7 por dia.</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-12 col-sm-6 col-md-4 mb-3">
+                    <div class="card h-100">
+                        <div class="card-body d-flex flex-column justify-content-center">
+                            <h5 class="card-title">Uber invés de ônibus</h5>
+                            <p class="card-text">Economize R$70 por mês.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="card col m-2 opacity-50" id="card-criar-economia" style="width: 18rem;">
-                    <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
-                        <h5 class="card-title">Criar economia</h5>
-                        <i class="fa-solid fa-pen-to-square"></i>
+                <div class="col-12 col-sm-6 col-md-4 mb-3">
+                    <div class="card h-100 opacity-50" id="card-criar-economia" data-bs-toggle="modal"
+                        data-bs-target="#modal-criar-economia">
+                        <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
+                            <h5 class="card-title">Criar economia</h5>
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -85,6 +96,50 @@
     </section>
 
     <section id="screen-resultado" class="d-none"></section>
+
+    <!-- MODAL CRIAR ECONOMIA -->
+
+    <div class="modal fade" id="modal-criar-economia" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Criar economia</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="d-flex flex-column">
+                        <label for="nome-economia">Nome da economia</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-pencil"></i></span>
+                            <input type="text" class="form-control" placeholder="Digite o nome da economia"
+                                aria-label="nome da economia" aria-describedby="basic-addon1" id="nome-economia"
+                                name="nome-economia">
+                        </div>
+                        <label for="valor-economia">Valor da economia</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">R$</span>
+                            <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)"
+                                id="valor-economia" name="valor-economia" placeholder="Digite o valor da economia">
+                            <span class="input-group-text">,00</span>
+                        </div>
+                        <label for="periodo-economia">Período da economia</label>
+                        <div class="input-group mb-3">
+                            <select class="form-select" id="periodo-economia">
+                                <option value="diaria" selected>Diária</option>
+                                <option value="mensal">Mensal</option>
+                            </select>
+                            <label class="input-group-text" for="inputGroupSelect02">Período</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-success">Criar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

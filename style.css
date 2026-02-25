@@ -2,6 +2,21 @@
 
 /* CARD CRIAR ECONOMIA */
 
-.card-criar-economia:hover {
-    opacity: 1;
+.card {
+    cursor: pointer;
+    transition: border 0.5s ease, background-color 0.5s ease;
 }
+
+.card:hover {
+    border: 1px solid #198754;
+}
+
+#card-criar-economia {
+    transition: opacity 0.5s ease;
+}
+
+.card.active {
+    background-color: #198754;
+}
+
+/* MODAL CRIAR ECONOMIA */
