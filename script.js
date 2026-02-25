@@ -41,11 +41,50 @@ cardCriarEconomia.addEventListener('mouseleave', () => {
     cardCriarEconomia.classList.add('opacity-50');
 })
 
-// EXIBIR POPUP CRIAR ECONOMIA
+// BOTÃO CRIAR ECONOMIA
 
-const popupCriarEconomia = document.querySelector('#popup-criar-economia');
+const btnCriarEconomia = document.querySelector('#btn-criar-economia');
+const inputNomeEconomia = document.querySelector('input#nome-economia');
+const inputValorEconomia = document.querySelector('input#valor-economia');
+const inputPeriodoEconomia = document.querySelector('select#periodo-economia');
+const rowCards = document.querySelector('.row-cards');
 
-cardCriarEconomia.addEventListener('click', () => {
-    popupCriarEconomia.classList.remove('d-none');
-    popupCriarEconomia.classList.remove('d-flex');
+btnCriarEconomia.addEventListener('click', (e) => {
+    
+    e.preventDefault();
+
+    console.log(inputNomeEconomia.value);
+    console.log(inputValorEconomia.value);
+    console.log(inputPeriodoEconomia.value);
+    // (FAZER TRATAMENTO DE DADOS ANTES)
+
+    // CRIAR DIV BODY
+    const novoCardBody = document.createElement('div');
+    novoCardBody.classList.add('card-body', 'd-flex', 'flex-column', 'justify-content-center');
+    
+    const tituloCardBody = document.createElement('h5');
+    tituloCardBody.textContent = inputNomeEconomia.value // .charAt(0).toUpperCase() + inputNomeEconomia.slice(1);
+    
+    const descricaoCardBody = document.createElement('p');
+    let periodo = inputPeriodoEconomia.value === 'mensal' ? 'mês' : 'dia';
+    descricaoCardBody.textContent = `Economize R$${inputValorEconomia.value} por ${periodo}.`;
+    
+    novoCardBody.append(tituloCardBody, descricaoCardBody); // ADD TITULO E DESCRICAO NO BODY
+
+    // CRIAR DIV DATA
+    const novoCardData = document.querySelector('div');
+    novoCardData.classList.add('card', 'h-100', 'economia-card');
+    novoCardData.setAttribute('data-valor', inputValorEconomia.value); // FAZER TRATAMENTO
+    novoCardData.setAttribute('data-periodo', inputPeriodoEconomia.value); // FAZER TRATAMENTO
+
+    novoCardData.appendChild(novoCardBody); // ADD CARD BODY NO CARD DATA;
+
+    // CRIAR DIV COL
+    const novoCardCol = document.createElement('div');
+    novoCardCol.classList.add('col-12', 'col-sm-6', 'col-md-4', 'mb-3');
+    
+    novoCardCol.appendChild(novoCardData); // insere divData na divCol
+
+    // ADICIONAR CARD COL A ROW
+    rowCards.appendChild(novoCardCol);
 })

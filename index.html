@@ -33,7 +33,7 @@
         <div class="cards container">
 
             <!-- LINHA 1 -->
-            <div class="row">
+            <div class="row row-cards">
                 <div class="col-12 col-sm-6 col-md-4 mb-3">
                     <div class="card h-100 economia-card" data-valor="12" data-periodo="diario">
                         <div class="card-body d-flex flex-column justify-content-center">
@@ -80,7 +80,7 @@
                 </div>
 
                 <div class="col-12 col-sm-6 col-md-4 mb-3">
-                    <div class="card h-100 opacity-50" id="card-criar-economia" data-bs-toggle="modal"
+                    <div class="card h-100 opacity-50 order-1" id="card-criar-economia" data-bs-toggle="modal"
                         data-bs-target="#modal-criar-economia">
                         <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
                             <h5 class="card-title">Criar economia</h5>
@@ -135,7 +135,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-success">Criar</button>
+                    <button type="button" class="btn btn-success" id="btn-criar-economia">Criar</button>
                 </div>
             </div>
         </div>
