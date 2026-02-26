@@ -121,6 +121,11 @@ btnVerResultado.addEventListener('click', async () => {
         aporteMensal += valorCard;
     })
 
+    if (aporteMensal <= 0) {
+        alert('Selecione suas economias.');
+        return;
+    }
+
     const selic = await buscarSelic();
 
     if (!selic) {
@@ -177,6 +182,9 @@ function calcular(aporteMensal, taxaAnual, dataAtualizacao) {
     textoUltimaAtualizacao.textContent = `Último dado disponível: ${dataAtualizacao}.`;
     textoEconomiaMensal.textContent = `Economia mensal: ${aporteMensal.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}.`;
 
+    const taxaMensal = Math.pow(1 + taxaAnual / 100, 1 / 12) - 1;
+
+    criarTabela(aporteMensal, taxaMensal);
 
     // IR PARA TELA RESULTADO
 
@@ -185,6 +193,117 @@ function calcular(aporteMensal, taxaAnual, dataAtualizacao) {
 
     sectionResultado.classList.remove('d-none');
     sectionResultado.classList.add('d-flex');
+}
+
+// CRIAR TABELA RESULTADO
+
+function criarTabela(aporteMensal, taxaMensal) {
+
+    const acordeao = document.querySelector('#accordionResultado');
+    acordeao.innerHTML - '';
+
+    let saldo = 0;
+    let totalInvestido = 0;
+
+    for (let ano = 1; ano <= 5; ano++) {
+
+        // ========================
+        // ACCORDION ITEM
+        // ========================
+
+        const item = document.createElement('div');
+        item.classList.add('accordion-item');
+
+        // CRIAR HEADER ACORDEAO
+        const header = document.createElement('h2');
+        header.classList.add('accordion-header');
+
+        // CRIAR BUTTON ACORDEAO
+        const button = document.createElement('button');
+        button.classList.add('accordion-button');
+        if (ano !== 1) button.classList.add('collapsed');
+
+        button.type = 'button';
+        button.setAttribute('data-bs-toggle', 'collapse');
+        button.setAttribute('data-bs-target', `#collapse${ano}`)
+        button.setAttribute('aria-expanded', ano === 1 ? 'true' : 'false');
+        button.setAttribute('aria-controls', `collapse${ano}`);
+        button.innerText = `${ano} ano${ano > 1 ? 's' : ''}`;
+
+        header.appendChild(button); // ADD BUTTON NO HEADER
+        item.appendChild(header); // ADD HEADER NO ITEM
+
+        // ========================
+        // COLLAPSE
+        // ========================
+
+        const collapse = document.createElement('div');
+        collapse.id = `collapse${ano}`;
+        collapse.classList.add('accordion-collapse', 'collapse');
+        if (ano === 1) collapse.classList.add('show');
+        collapse.setAttribute('data-bs-parent', '#accordionResultado');
+
+        // CRIAR BODY
+        const body = document.createElement('div');
+        body.classList.add('accordion-body');
+
+        // ========================
+        // TABELA
+        // ========================
+
+        const table = document.createElement('table');
+        table.classList.add('table', 'table-dark', 'table-striped', 'table-sm');
+
+        const thead = document.createElement('thead');
+        const trHead = document.createElement('tr');
+
+        ['Mês', 'Total Investido', 'Juros do Mês', 'Total Acumulado']
+            .forEach(texto => {
+                const th = document.createElement('th');
+                th.textContent = texto;
+                trHead.appendChild(th);
+            })
+
+            thead.appendChild(trHead);
+            table.appendChild(thead);
+
+        const tbody = document.createElement('tbody');
+
+        // ========================
+        // MESES DO ANO
+        // ========================
+
+        for (let mes = 1; mes <= 12; mes++) {
+            
+            const juros = saldo * taxaMensal;
+            saldo += juros + aporteMensal;
+            totalInvestido += aporteMensal;
+
+            const tr = document.createElement('tr');
+
+            const colMes = document.createElement('td');
+            colMes.textContent = `Mês ${(ano - 1) * 12 + mes}`;
+
+            const colInvestido = document.createElement('td');
+            colInvestido.textContent = totalInvestido.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
+
+            const colJuros = document.createElement('td');
+            colJuros.textContent = juros.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
+
+            const colSaldo = document.createElement('td');
+            colSaldo.textContent = saldo.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
+
+            tr.append(colMes, colInvestido, colJuros, colSaldo);
+            tbody.appendChild(tr);
+
+        }
+
+        table.appendChild(tbody);
+        body.appendChild(table);
+        collapse.appendChild(body);
+        item.appendChild(collapse);
+        acordeao.appendChild(item);
+    }
 }
 
 const sectionResultado = document.querySelector('#screen-resultado');
