@@ -33,3 +33,15 @@
 .accordion-button::after {
     filter: brightness(0) invert(1);
 }
+
+/* TABLE */
+
+.table th,
+.table td {
+    white-space: nowrap;
+}
+
+.table-responsive table {
+    min-width: 500px;
+    table-layout: auto;
+}

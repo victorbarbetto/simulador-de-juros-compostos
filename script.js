@@ -197,10 +197,12 @@ function calcular(aporteMensal, taxaAnual, dataAtualizacao) {
 
 // CRIAR TABELA RESULTADO
 
+
+
 function criarTabela(aporteMensal, taxaMensal) {
 
     const acordeao = document.querySelector('#accordionResultado');
-    acordeao.innerHTML - '';
+    acordeao.innerHTML = '';
 
     let saldo = 0;
     let totalInvestido = 0;
@@ -251,6 +253,9 @@ function criarTabela(aporteMensal, taxaMensal) {
         // TABELA
         // ========================
 
+        const scrollTable = document.createElement('div');
+        scrollTable.classList.add('table-responsive');
+
         const table = document.createElement('table');
         table.classList.add('table', 'table-dark', 'table-striped', 'table-sm');
 
@@ -264,8 +269,8 @@ function criarTabela(aporteMensal, taxaMensal) {
                 trHead.appendChild(th);
             })
 
-            thead.appendChild(trHead);
-            table.appendChild(thead);
+        thead.appendChild(trHead);
+        table.appendChild(thead);
 
         const tbody = document.createElement('tbody');
 
@@ -274,7 +279,7 @@ function criarTabela(aporteMensal, taxaMensal) {
         // ========================
 
         for (let mes = 1; mes <= 12; mes++) {
-            
+
             const juros = saldo * taxaMensal;
             saldo += juros + aporteMensal;
             totalInvestido += aporteMensal;
@@ -299,7 +304,8 @@ function criarTabela(aporteMensal, taxaMensal) {
         }
 
         table.appendChild(tbody);
-        body.appendChild(table);
+        scrollTable.appendChild(table);
+        body.appendChild(scrollTable);
         collapse.appendChild(body);
         item.appendChild(collapse);
         acordeao.appendChild(item);
@@ -318,4 +324,5 @@ btnOutroCalculo.addEventListener('click', () => {
 
     sectionEconomias.classList.remove('d-none');
     sectionEconomias.classList.add('d-flex');
+
 });
