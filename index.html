@@ -78,13 +78,19 @@
         <!-- MODAL -->
 
             <dialog class="modal-criar-economia">
-                <h2>Criar Economia Personalizada</h2>
+                <i class="fa-solid fa-circle-xmark"></i>
                 <form>
-                    <input type="text" name="input-nome" id="input-nome">
+                    <label for="input-nome">Nome da economia</label>
+                    <input type="text" name="input-nome" id="input-nome" placeholder="Digite o nome da sua economia">
+                    <label for="input-valor">Valor da economia</label>
                     <input type="text" name="input-valor" id="input-valor">
+                    <label for="select-periodo">Período da economia</label>
                     <select name="select-periodo" id="select-periodo">
-                        <option value="di"></option>
+                        <option value="diaria">Diária</option>
+                        <option value="semanal">Semanal</option>
+                        <option value="mensal">Mensal</option>
                     </select>
+                    <button>Criar economia</button>
                 </form>
             </dialog>
 

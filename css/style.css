@@ -177,3 +177,55 @@ div.card-economia.active i {
 
 /* MODAL */
 
+dialog.modal-criar-economia {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    width: 400px;
+    height: 400px;
+    background-color: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    text-align: center;
+    padding: 20px 0;
+}
+
+dialog.modal-criar-economia::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-criar-economia i {
+    align-self: flex-end;
+    margin-right: 20px;
+    font-size: 1.5em;
+    text-align: end;
+    cursor: pointer;
+}
+
+.modal-criar-economia i:hover {
+    color: var(--primary);
+}
+
+.modal-criar-economia form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+    width: 60%;
+    text-align: left;
+}
+
+.modal-criar-economia form input, .modal-criar-economia form select {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    margin-bottom: 10px;
+}
+
+.modal-criar-economia button {
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
