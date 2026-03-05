@@ -28,31 +28,31 @@
             <h2>Onde você poderia economizar?</h2>
 
             <div class="lista-economias">
-                <div class="card card-economia">
+                <div class="card card-economia" data-valor="110">
                     <i class="fa-solid fa-mug-hot"></i>
                     <h3>Café fora de casa</h3>
                     <p>Economize R$110/mês</p>
                 </div>
 
-                <div class="card card-economia">
+                <div class="card card-economia" data-valor="160">
                     <i class="fa-solid fa-burger"></i>
                     <h3>Delivery/pedir comida</h3>
                     <p>Economize R$160/mês</p>
                 </div>
 
-                <div class="card card-economia">
+                <div class="card card-economia" data-valor="100">
                     <i class="fa-solid fa-bag-shopping"></i>
                     <h3>Compras por impulso</h3>
                     <p>Economize R$100/mês</p>
                 </div>
 
-                <div class="card card-economia">
+                <div class="card card-economia" data-valor="180">
                     <i class="fa-solid fa-car"></i>
                     <h3>Transporte por app</h3>
                     <p>Economize R$180/mês</p>
                 </div>
 
-                <div class="card card-economia">
+                <div class="card card-economia" data-valor="60">
                     <i class="fa-solid fa-circle-play"></i>
                     <h3>Streaming/Assinaturas</h3>
                     <p>Economize R$60/mês</p>
@@ -65,13 +65,14 @@
                 </div>
 
             </div>
+            <button id="ver-resultado">Ver Resultado</button>
 
         </section>
 
         <section class="resultado">
             <h2>Seu potencial de investimento</h2>
 
-            <!-- resultado -->
+            
 
         </section>
 
@@ -81,16 +82,18 @@
                 <button id="btnFecharModal"><i class="fa-solid fa-circle-xmark"></i></button>
                 <form>
                     <label for="input-nome">Nome da economia</label>
-                    <input type="text" name="input-nome" id="input-nome" placeholder="Digite o nome da sua economia">
+                    <input type="text" name="input-nome" id="input-nome" placeholder='Exemplo: "Delivery"' minlength="2"
+                        maxlength="30" required>
                     <label for="input-valor">Valor da economia</label>
-                    <input type="text" name="input-valor" id="input-valor" placeholder="Digite o valor da sua economia">
+                    <input type="text" name="input-valor" id="input-valor" placeholder='Exemplo: "150"' minlength="1"
+                        maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '');" required>
                     <label for="select-periodo">Período da economia</label>
-                    <select name="select-periodo" id="select-periodo">
-                        <option value="diaria">Diária</option>
-                        <option value="semanal">Semanal</option>
+                    <select name="select-periodo" id="select-periodo" required>
                         <option value="mensal">Mensal</option>
+                        <option value="semanal">Semanal</option>
+                        <option value="diaria">Diária</option>
                     </select>
-                    <button>Criar economia</button>
+                    <button id="criar-card-personalizado">Criar economia</button>
                 </form>
             </div>
         </div>

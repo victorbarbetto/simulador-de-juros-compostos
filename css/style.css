@@ -143,7 +143,7 @@ section.economias div.lista-economias div.card {
     padding: 15px 0;
     cursor: pointer;
 
-    transition: border 0.5s ease;
+    transition: border 0.5s ease, background-color 0.5s ease;
 }
 
 section.economias div.lista-economias div.card:hover {
@@ -158,6 +158,8 @@ div.card i {
     color: var(--primary);
     font-size: 1.5em;
     margin-bottom: 5px;
+
+    transition: color 0.5s ease;
 }
 
 section.economias div.lista-economias div.card-criar-economia {
@@ -235,6 +237,24 @@ div.modal-criar-economia {
     border-radius: 10px;
     border: none;
     margin-bottom: 10px;
+
+    transition: background-color 0.5s ease;
+}
+
+.modal-criar-economia form input:focus, .modal-criar-economia form select:focus {
+    background-color: var(--primary);
+    color: var(--text);
+    font-weight: bold;
+}
+
+.modal-criar-economia form input:focus::placeholder {
+    color: var(--text);
+    font-weight: normal;
+}
+
+.modal-criar-economia form select option {
+    background-color: var(--bg-secondary);
+    color: white;
 }
 
 .modal-criar-economia button {
@@ -250,3 +270,4 @@ div.overlay.hidden {
 div.modal-criar-economia.hidden {
     display: none;
 }
+
