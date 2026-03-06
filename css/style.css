@@ -242,7 +242,7 @@ div.modal-criar-economia {
 }
 
 .modal-criar-economia form input:focus, .modal-criar-economia form select:focus {
-    background-color: var(--primary);
+    background-color: var(--border);
     color: var(--text);
     font-weight: bold;
 }
@@ -271,3 +271,8 @@ div.modal-criar-economia.hidden {
     display: none;
 }
 
+/* SECTION RESULTADO */
+
+section.resultado.hidden {
+    display: none;
+}

@@ -40,10 +40,11 @@ function criarCardPersonalizado() {
     }
 
     const novoCard = document.createElement('div');
-    novoCard.classList.add('card', 'card-economia');
-
+    novoCard.classList.add('card', 'card-economia', 'active');
+    
     const tituloCapitalizado = capitalizar(inputNome.value.trim());
-    const aporteMensal = valorMensal(selectPeriodo.value, Number(inputValor.value.trim()))
+    const aporteMensal = valorMensal(selectPeriodo.value, Number(inputValor.value.trim()));
+    novoCard.dataset.valor = `${String(aporteMensal)}`
 
     novoCard.innerHTML = `
         <i class="fa-solid fa-file-pen"></i>
@@ -134,4 +135,27 @@ function valorMensal(input, valor) {
 
 // RESULTADO ECONOMIA
 
-const sectionResultado = document.querySelector('section.resultado')
+const sectionResultado = document.querySelector('section.resultado');
+const btnVerResultado = document.querySelector('button#ver-resultado');
+
+btnVerResultado.addEventListener('click', (e) => {
+    
+    const activeCards = document.querySelectorAll('div.active');
+    let totalAporteMensal = 0;
+    activeCards.forEach(card => {
+        totalAporteMensal += Number(card.dataset.valor);
+    })
+
+    console.log(totalAporteMensal);
+    // chamar funcao de calculo e enviar totalAporteMensal
+
+    sectionResultado.classList.remove('hidden');
+})
+
+// FUNCAO DE CALCULO JUROS COMPOSTOS
+
+function calcularJurosCompostos(totalAporteMensal) {
+
+    
+    // CHAMAR FUNCAO DE ESCREVER HTML
+}
